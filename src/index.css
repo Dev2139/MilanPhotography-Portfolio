@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base */
+    --background: 0 0% 100%;
+    --foreground: 213 77% 21%; /* Brand Navy (used for primary text) */
+
+    --card: 0 0% 100%;
+    --card-foreground: 213 77% 21%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 77% 21%;
+
+    --primary: 213 77% 21%; /* Brand Navy */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 16% 96%;
+    --secondary-foreground: 213 77% 21%;
+
+    --muted: 210 14% 95%;
+    --muted-foreground: 213 20% 35%;
+
+    --accent: 203 98% 55%; /* Cyan/Blue from logo */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 3 100% 60%; /* Pink/Red from logo */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 213 20% 88%;
+    --input: 213 20% 88%;
+    --ring: 203 98% 55%;
+
+    --radius: 0.25rem;
+
+    /* Brand palette from logo */
+    --ivory: 0 0% 100%;
+    --cream: 210 16% 96%;
+    --champagne: 210 20% 92%;
+    --warm-gray: 213 10% 45%;
+    --charcoal: 213 77% 21%; /* Brand Navy */
+    --gold: 203 98% 55%; /* Repurpose 'gold' token as brand Cyan */
+    --gold-light: 200 100% 75%; /* Light Cyan/Blue */
+    --gold-dark: 213 77% 35%; /* Darker Navy */
+
+    /* Additional brand accents for gradients/accents */
+    --brand-green: 135 64% 50%;
+    --brand-orange: 35 100% 52%;
+    --brand-purple: 252 100% 68%;
+    --brand-pink: 344 100% 59%;
+
+    /* Typography */
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Montserrat', system-ui, sans-serif;
+
+    /* Shadows */
+    --shadow-soft: 0 4px 30px -5px hsla(30, 10%, 15%, 0.08);
+    --shadow-elegant: 0 20px 60px -15px hsla(30, 10%, 15%, 0.15);
+    --shadow-gold: 0 10px 40px -10px hsla(38, 65%, 50%, 0.25);
+
+    /* Transitions */
+    --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-elegant: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 28% 10%;
+    --foreground: 0 0% 100%;
+
+    --card: 220 28% 12%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 220 28% 10%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 203 98% 55%; /* Cyan */
+    --primary-foreground: 220 28% 10%;
+
+    --secondary: 220 20% 18%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 20% 22%;
+    --muted-foreground: 210 12% 70%;
+
+    --accent: 203 98% 60%;
+    --accent-foreground: 220 28% 10%;
+
+    --destructive: 3 85% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 22%;
+    --input: 220 20% 22%;
+    --ring: 203 98% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold via-gold-light to-gold bg-clip-text text-transparent;
+  }
+
+  .border-gradient-gold {
+    border-image: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-light)), hsl(var(--gold))) 1;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  .hover-lift:hover {
+    @apply -translate-y-1;
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .image-reveal {
+    @apply overflow-hidden;
+  }
+
+  .image-reveal img {
+    @apply transition-transform duration-700 ease-out;
+  }
+
+  .image-reveal:hover img {
+    @apply scale-105;
+  }
+
+  .line-reveal {
+    @apply relative overflow-hidden;
+  }
+
+  .line-reveal::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-accent transition-all duration-500;
+  }
+
+  .line-reveal:hover::after {
+    @apply w-full;
+  }
+
+  .fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
+  }
+
+  .fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
