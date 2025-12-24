@@ -1,0 +1,9 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow build and system directories (if any)
+Disallow: /node_modules/
+Disallow: /dist/
+
+Sitemap: https://milanphotography.com/sitemap.xml
